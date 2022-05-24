@@ -7,7 +7,7 @@ public class Program
        HashMap<string, int> hash = new HashMap<string, int>(5);//size 5
         Console.WriteLine("Welcome to Hash Table");
         bool end = true;
-        Console.WriteLine("1.Frequency Of Words in sentence \n2. Frequency Of Words In Large Paragraph Phrase \n 3.End the Program");
+        Console.WriteLine("1.Frequency Of Words in sentence \n2. Frequency Of Words In Large Paragraph Phrase \n3.Frequency Of Words In Large Paragraph Phrase and Remove \n4.End the Program");
         while (end == true)
         {
             Console.WriteLine("Take an option to execute");
@@ -71,6 +71,39 @@ public class Program
                     hash.Display();
                     break;
                 case 3:
+                    HashMap<string, int> hash2 = new HashMap<string, int>(5);
+                    string phrase2 = "Paranoids are not paranoid because they are paranoid but because they keep putting themselves deliberately into paranoid avoidable situations";
+                    string[] arr2 = phrase2.Split(' ');
+                    LinkedList<string> checkDuplicate = new LinkedList<string>();
+                    foreach (string element in arr2)
+                    {
+                        int count = 0;
+                        foreach (string match in arr2)
+                        {
+                            if (element == match)
+                            {
+                                count++;
+                                if (checkDuplicate.Contains(element))
+                                {
+                                    break;
+                                }
+                            }
+                        }
+                        if (checkDuplicate.Contains(element))
+                        {
+                            continue;
+                        }
+                        checkDuplicate.AddLast(element);
+                        hash2.Add(element, count);
+                    }
+                    int freq = hash2.Get("avoidable");
+                    Console.WriteLine("Frequency of the word Avoidable:" + "" + freq);
+                    hash2.Remove("avoidable");
+                    freq = hash2.Get("avoidable");
+                    Console.WriteLine("Frequency of the word Avoidable after removing:" + "" + freq);
+                    hash2.Display();
+                    break;
+                case 4:
                     end = false;
                     break;
                 default:
